@@ -1,0 +1,14 @@
+.number {
+    display: flex;
+    align-items: center;
+    color: #28A745;
+}
+
+.number img {
+    width: 24px;
+    height: 24px;
+}
+
+.number p {
+    margin: 0 5px;
+}

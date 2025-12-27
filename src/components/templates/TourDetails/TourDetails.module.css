@@ -1,0 +1,113 @@
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-top: 30px;
+    margin-bottom: 100px;
+    width: 1188px;
+    height: 427px;
+    background-color: rgba(216, 216, 216, 0.101);
+    border: 1px solid #00000033;
+    border-radius: 10px;
+    padding: 15px;
+}
+
+.first {
+    display: flex;
+    justify-content: space-between;
+}
+
+.first img {
+    width: 397px;
+    height: 265px;
+}
+
+.container h2 {
+    font-size: 32px;
+    font-weight: 700;
+    color: #000000;
+}
+
+.options {
+    display: flex;
+}
+
+.options div {
+    display: flex;
+}
+
+.options div:nth-child(2) {
+    margin: 0 30px;
+}
+
+.options img {
+    width: 24px;
+    height: 24px;
+}
+
+.options p {
+    font-size: 20px;
+    font-weight: 400;
+    color: #7D7D7D;
+    margin-right: 10px;
+}
+
+.reserve {
+    display: flex;
+    justify-content: space-between;
+}
+
+.reserve button {
+    padding: 8px 30px;
+    background-color: #28A745;
+    color: #FFFFFF;
+    font-size: 24px;
+    font-weight: 400;
+    border-radius: 10px;
+
+}
+
+.reserve p {
+    color: #009ECA;
+    font-size: 28px;
+    font-weight: 400;
+}
+
+.reserve span {
+    color: #282828CC;
+    font-size: 28px;
+    font-weight: 400;
+}
+
+.descriptions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 50px;
+}
+
+.descriptions div div {
+    display: flex;
+}
+
+.descriptions img {
+    width: 20px;
+    height: 20px;
+}
+
+.descriptions h3 {
+    font-size: 18px;
+    font-weight: 400;
+    margin-right: 10px;
+}
+
+.descriptions p {
+    font-size: 16px;
+    font-weight: 500;
+    margin-top: 10px;
+}
+
+.left {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 60%;
+}

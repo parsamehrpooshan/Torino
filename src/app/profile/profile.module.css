@@ -1,0 +1,92 @@
+.layout {
+     padding: 2.5rem;     
+  display: grid;         
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem; 
+  max-width: 1200px;
+  margin: 0 auto;
+ border-bottom: 1px solid #00000033;
+ margin-bottom: 30px;
+}
+
+.main > div {
+    margin-bottom: 10px;
+    border-radius: 10px;
+    border: 1px solid #00000033;
+    padding: 12px;
+}
+
+.main header {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 25px;
+}
+
+.personal div {
+  display: flex;
+  align-items: center;
+}
+
+
+.main img {
+  width: 16px;
+  height: 16px;
+  margin-left: 4px;
+}
+
+.main h2 {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.main button {
+    font-size: 14px;
+    font-weight: 400;
+    color: #009ECA;
+}
+
+.main section {
+    display: grid;         
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+.main p {
+    font-size: 14px;
+    font-weight: 300;
+}
+
+
+.sidebar {
+     border: 1px solid #00000033;
+  border-radius: 10px;    
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
+  
+}
+
+.sidebar li {
+  padding: 0.5rem;                  
+  border-bottom: 1px solid #e2e8f0; 
+  list-style: none; 
+  display: flex;    
+  align-items: center;        
+}
+
+
+.sidebar li:last-child {
+  border-bottom: none; 
+}
+
+.sidebar a {
+  text-decoration: none; 
+  color: inherit;      
+  display: block;
+  margin-right: 10px;       
+}
+
+.sidebar li img {
+  width: 20px;
+  height: 20px;
+}

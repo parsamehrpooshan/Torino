@@ -1,0 +1,85 @@
+.container {
+    max-width: 872px;
+    border: 1px solid #00000033;
+    padding: 20px;
+    border-radius: 10px;
+
+}
+
+.container section {
+    border: 1px solid #00000033;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 15px;
+}
+
+.container img {
+    width: 24px;
+    height: 24px;
+}
+
+.container section > div:first-child {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+.container section > div:first-child div {
+    display: flex;
+}
+
+.title {
+    margin-right: 7px;
+}
+
+.container section > div:nth-child(2) {
+    display: grid ;
+    grid-template-columns: repeat(2,1fr);
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.container section div:last-child {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+}
+
+.container div:first-child p:first-child, .container div:first-child p:nth-child(2) {
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.container .availableSeats {
+    background-color: #28A7454D;
+    color: #28A745;
+    border-radius: 27px;
+    padding: 5px;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.container div:nth-child(2) p {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.container div:nth-child(2) span {
+    font-size: 14px;
+    font-weight: 400;
+    color: #00000099;
+    margin-right: 10px;
+}
+
+.container div:last-child p {
+    font-size: 14px;
+    font-weight: 400;
+    color: #00000080;
+}
+
+.container div:last-child span {
+    font-size: 14px;
+    font-weight: 500;
+    color: #282828;
+}
