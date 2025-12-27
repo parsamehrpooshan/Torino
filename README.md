@@ -11,19 +11,18 @@
 
 ## 🖼 دمو پروژه
 
-🎥 دموی آنلاین پروژه
-[مشاهده آنلاین](در حال آماده‌سازی...)
+🎥 دموی آنلاین پروژه (در حال آماده‌سازی...)
 
 📸 پیش‌نمایش:
-![Preview](./public/screenshot1.png)
-![Preview](./public/screenshot8.png)
-![Preview](./public/screenshot9.png)
-![Preview](./public/screenshot2.png)
-![Preview](./public/screenshot3.png)
-![Preview](./public/screenshot4.png)
-![Preview](./public/screenshot5.png)
-![Preview](./public/screenshot6.png)
-![Preview](./public/screenshot7.png)
+![Preview](./public/images/screenshot9.png)
+![Preview](./public/images/screenshot8.png)
+![Preview](./public/images/screenshot1.png)
+![Preview](./public/images/screenshot2.png)
+![Preview](./public/images/screenshot3.png)
+![Preview](./public/images/screenshot4.png)
+![Preview](./public/images/screenshot5.png)
+![Preview](./public/images/screenshot6.png)
+![Preview](./public/images/screenshot7.png)
 
 ---
 
