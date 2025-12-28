@@ -72,7 +72,7 @@ npm install
 ```
 
 
-4. ران کردن backend: (بک اند پروژه جداگانه روی گیت‌هاب به آدرس [text](https://github.com/parsamehrpooshan/Torino-api) قرار گرفته است)
+4. ران کردن backend: (بک اند پروژه جداگانه روی گیت‌هاب به آدرس (https://github.com/parsamehrpooshan/Torino-api) قرار گرفته است)
 
 ```bash
 npm start
