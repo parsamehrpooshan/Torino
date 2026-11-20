@@ -3,11 +3,11 @@ import QueryString from "qs";
 
 import api from "../config/api";
 
-export const useGetUserData = () => {
+export const useGetUserData = (options = {}) => {
   const queryFn = () => api.get("/user/profile");
   const queryKey = ["user-data"];
 
-  return useQuery({ queryFn, queryKey });
+  return useQuery({ queryFn, queryKey, ...options });
 };
 
 export const useGetTours = (query) => {

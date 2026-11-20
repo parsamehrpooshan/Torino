@@ -10,7 +10,6 @@ const api = axios.create({
   },
 });
 
-// Reuse one refresh request when multiple API requests expire simultaneously.
 let refreshPromise = null;
 
 api.interceptors.request.use(
@@ -68,7 +67,6 @@ const getNewTokens = async () => {
   if (!refreshToken) return null;
 
   try {
-    // Use base Axios so a refresh failure cannot trigger this interceptor again.
     return await axios.post(`${BASE_URL}/auth/refresh-token`, {
       refreshToken,
     });

@@ -1,20 +1,37 @@
 "use client";
 
 import { useGetUserData } from "@/core/services/queries";
+import { getCookie } from "@/core/utils/cookie";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
 function AuthProvider({ children }) {
   const router = useRouter();
-  const { data, isPending } = useGetUserData();
+
+  const accessToken = getCookie("accessToken");
+  const refreshToken = getCookie("refreshToken");
+
+  const hasToken = Boolean(accessToken || refreshToken);
+
+  const { data, isPending, isError, isSuccess } = useGetUserData({
+    enabled: hasToken,
+    retry: false,
+  });
 
   useEffect(() => {
-    if (!isPending && !data?.data) {
-      router.push("/");
+    if (!hasToken) {
+      router.replace("/");
+      return;
     }
-  }, [data, isPending, router]);
 
-  if (isPending) return <p>Loading</p>;
+    if (isError || (isSuccess && !data?.data)) {
+      router.replace("/");
+    }
+  }, [hasToken, isError, isSuccess, data, router]);
+
+  if (!hasToken || isPending || isError || !data?.data) {
+    return null;
+  }
 
   return <div>{children}</div>;
 }
