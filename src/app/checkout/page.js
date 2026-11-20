@@ -1,9 +1,11 @@
 "use client";
 
 import { useCheckout, useUpdateBankAccount } from "@/core/services/mutations";
-import { useGetUserBasket, useGetUserData } from "@/core/services/queries";
+import { useGetUserBasket } from "@/core/services/queries";
 import { useRouter } from "next/navigation";
 import { useForm, Controller } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { checkoutSchema } from "@/core/schema";
 
 import styles from "./checkout.module.css";
 import Link from "next/link";
@@ -14,38 +16,82 @@ import { DatePicker } from "zaman";
 import { getTourDurationLabel } from "@/core/utils/helpers";
 
 function CheckoutPage() {
-  const { data, error } = useGetUserBasket();
-
-  console.log(data);
+  const { data } = useGetUserBasket();
 
   const { mutate } = useCheckout();
   const { mutate: updateUserProfile } = useUpdateBankAccount();
 
   const router = useRouter();
 
-  const { register, handleSubmit, reset, control } = useForm();
+  const {
+    register,
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(checkoutSchema),
+    mode: "onBlur",
+    reValidateMode: "onChange",
+    defaultValues: {
+      fullName: "",
+      nationalCode: "",
+      birthDate: "",
+      gender: "",
+    },
+  });
+
+  const fieldError = (name) =>
+    errors[name] ? (
+      <span
+        id={`checkout-${name}-error`}
+        className={styles.fieldError}
+        role="alert"
+      >
+        {errors[name].message}
+      </span>
+    ) : null;
+
+  // const checkoutHandler = (formData) => {
+  //   // if () {} کاربر اطلاعات را وارد کرده باشد
+  //   mutate(formData, {
+  //     onSuccess: () => {
+  //       // location.href = link
+  //       router.push("/payment?status=success");
+  //     },
+  //     onError: (error) => {
+  //       console.error(error);
+  //     },
+  //   });
+
+  //   updateUserProfile(formData);
+  // };
 
   const checkoutHandler = (formData) => {
-    console.log("formdata");
-    // if () {} کاربر اطلاعات را وارد کرده باشد
+    const nameParts = formData.fullName.trim().split(/\s+/);
+
+    const profileData = {
+      firstName: nameParts.shift() || "",
+      lastName: nameParts.join(" "),
+      nationalCode: formData.nationalCode,
+      birthDate: formData.birthDate,
+      gender: formData.gender,
+    };
+
     mutate(formData, {
-      onSuccess: (data) => {
-        console.log(data);
-        // location.href = link
+      onSuccess: () => {
         router.push("/payment?status=success");
       },
       onError: (error) => {
-        console.log(error);
+        console.error(error);
       },
     });
 
-    updateUserProfile(formData);
+    updateUserProfile(profileData);
   };
 
-  console.log(error);
   if (!data?.data?.title)
     return (
-      <div className="border border-green-500 bg-green-50 m-auto mt-20 w-fit rounded-md p-10">
+      <div className={styles.emptyState}>
         <p>سبد خرید شما خالی است</p>
         <Link href={"/"}>برو صفحه اصلی</Link>
       </div>
@@ -63,33 +109,67 @@ function CheckoutPage() {
           />
           <h2>مشخصات مسافر</h2>
         </div>
-        <form className="*:border-2 *:border-gray-300 *:rounded-md *:m-2 *:p-2">
-          <input
-            {...register("fullName", {
-              required: "نام و نام خانوادگی را باید وارد کنید",
-            })}
-            placeholder="نام و نام خانوادگی"
-          />
+        <form
+          id="checkout-form"
+          className={styles.passengerForm}
+          onSubmit={handleSubmit(checkoutHandler)}
+          noValidate
+        >
+          <div className={styles.fieldGroup}>
+            <input
+              {...register("fullName")}
+              placeholder="نام و نام خانوادگی"
+              aria-invalid={!!errors.fullName}
+              aria-describedby={
+                errors.fullName ? "checkout-fullName-error" : undefined
+              }
+            />
+            {fieldError("fullName")}
+          </div>
 
-          <input
-            {...register("nationalCode", { required: "true" })}
-            placeholder="کد ملی"
-          />
-          <Controller
-            control={control}
-            name="birthDate"
-            render={({ field: { onChange } }) => (
-              <DatePicker
-                inputAttributes={{ placeholder: "تاریخ تولد" }}
-                onChange={(e) => onChange(e.value)}
-              />
-            )}
-          />
-          <select {...register("gender", { required: "true" })}>
-            <option value="">جنسیت</option>
-            <option value="female">خانم</option>
-            <option value="male">آقا</option>
-          </select>
+          <div className={styles.fieldGroup}>
+            <input
+              {...register("nationalCode")}
+              placeholder="کد ملی"
+              inputMode="numeric"
+              maxLength={10}
+              aria-invalid={!!errors.nationalCode}
+              aria-describedby={
+                errors.nationalCode ? "checkout-nationalCode-error" : undefined
+              }
+            />
+            {fieldError("nationalCode")}
+          </div>
+
+          <div className={styles.fieldGroup}>
+            <Controller
+              control={control}
+              name="birthDate"
+              render={({ field: { onChange, value } }) => (
+                <DatePicker
+                  inputAttributes={{ placeholder: "تاریخ تولد" }}
+                  onChange={(dateValue) => onChange(dateValue?.value ?? "")}
+                  // defaultValue={value}
+                />
+              )}
+            />
+            {fieldError("birthDate")}
+          </div>
+
+          <div className={styles.fieldGroup}>
+            <select
+              {...register("gender")}
+              aria-invalid={!!errors.gender}
+              aria-describedby={
+                errors.gender ? "checkout-gender-error" : undefined
+              }
+            >
+              <option value="">جنسیت</option>
+              <option value="female">خانم</option>
+              <option value="male">آقا</option>
+            </select>
+            {fieldError("gender")}
+          </div>
         </form>
       </div>
       <div className={styles.left}>
@@ -104,7 +184,7 @@ function CheckoutPage() {
             {data?.data?.price} <span>تومان</span>
           </p>
         </div>
-        <button onClick={handleSubmit(checkoutHandler)}>
+        <button type="submit" form="checkout-form">
           ثبت و خرید نهایی
         </button>
       </div>

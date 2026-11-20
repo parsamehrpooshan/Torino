@@ -1,24 +1,32 @@
+import { useCallback } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
 const useQuery = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const params = new URLSearchParams(String(searchParams));
 
-  const addQuery = (key, value) => {
-    value = String(value);
-    params.set(key, value);
-    router.replace(`?${params}`);
-  };
+  const addQuery = useCallback(
+    (key, value) => {
+      const params = new URLSearchParams(searchParams.toString());
+      params.set(key, String(value));
+      router.replace(`?${params.toString()}`);
+    },
+    [router, searchParams]
+  );
 
-  const removeQuery = (key) => {
-    params.delete(key);
-    router.replace(`?${params}`);
-  };
+  const removeQuery = useCallback(
+    (key) => {
+      const params = new URLSearchParams(searchParams.toString());
+      params.delete(key);
+      router.replace(`?${params.toString()}`);
+    },
+    [router, searchParams]
+  );
 
-  const getQuery = (key) => {
-    return params.get(key);
-  };
+  const getQuery = useCallback(
+    (key) => searchParams.get(key),
+    [searchParams]
+  );
 
   return { addQuery, removeQuery, getQuery };
 };

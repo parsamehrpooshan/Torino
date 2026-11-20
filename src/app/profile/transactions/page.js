@@ -1,7 +1,6 @@
 "use client";
 
 import { useGetUserTransactions } from "@/core/services/queries";
-import React from "react";
 
 import styles from "./transactions.module.css";
 import Link from "next/link";
@@ -10,12 +9,11 @@ import { convertToIranDateTime } from "@/core/utils/helpers";
 
 
 function Transactions() {
-  const { data, error, isPending } = useGetUserTransactions();
-  console.log(data);
+  const { data } = useGetUserTransactions();
 
   if (!data?.data?.length)
     return (
-      <div className="border border-green-500 bg-green-50 m-auto mt-20 w-fit rounded-md p-10">
+      <div className={styles.emptyState}>
         <p>تراکنشی وجود ندارد</p>
         <Link href={"/"}>برو صفحه اصلی</Link>
       </div>

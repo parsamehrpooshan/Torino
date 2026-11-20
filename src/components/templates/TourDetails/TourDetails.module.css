@@ -19,6 +19,7 @@
 .first img {
     width: 397px;
     height: 265px;
+    border-radius: 12px;
 }
 
 .container h2 {

@@ -2,10 +2,9 @@ import Image from "next/image";
 import React from "react";
 
 import styles from "./TourDetails.module.css";
-import Link from "next/link";
 import ReserveButton from "@/components/atoms/ReserveButton";
 
-import { LOCATION_FA } from "@/core/utils/helpers";
+import { getLocationLabel, getVehicleLabel } from "@/core/utils/helpers";
 
 
 function TourDetails({ tourDetails }) {
@@ -68,7 +67,7 @@ function TourDetails({ tourDetails }) {
             />
             <h3>مبدا</h3>
           </div>
-          <p>{LOCATION_FA[tourDetails?.origin?.name] || tourDetails?.origin?.name}</p>
+          <p>{getLocationLabel(tourDetails?.origin?.name)}</p>
         </div>
         <div>
           <div>
@@ -80,7 +79,7 @@ function TourDetails({ tourDetails }) {
             />
             <h3>مقصد</h3>
           </div>
-          <p>{LOCATION_FA[tourDetails?.destination?.name] || tourDetails?.destination?.name}</p>
+          <p>{getLocationLabel(tourDetails?.destination?.name)}</p>
         </div>
         <div>
           <div>
@@ -93,15 +92,7 @@ function TourDetails({ tourDetails }) {
             <h3>حمل و نقل</h3>
           </div>
           <p>
-            {tourDetails?.fleetVehicle === "airplane"
-              ? "هواپیما"
-              : tourDetails?.fleetVehicle === "ship"
-              ? "کشتی"
-              : tourDetails?.fleetVehicle === "train"
-              ? "قطار"
-              : tourDetails?.fleetVehicle === "bus"
-              ? "اتوبوس"
-              : "خودرو آفرود"}
+            {getVehicleLabel(tourDetails?.fleetVehicle)}
           </p>
         </div>
         <div>

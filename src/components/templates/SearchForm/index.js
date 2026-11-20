@@ -1,11 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { DatePicker } from "zaman";
 import QueryString from "qs";
 
-import { flattenObject } from "@/core/utils/helpers";
+import { flattenObject, getLocationLabel } from "@/core/utils/helpers";
 import { useGetTours } from "@/core/services/queries";
 import { useRouter } from "next/navigation";
 import useQuery from "@/core/hooks/query";
@@ -13,20 +13,14 @@ import Image from "next/image";
 
 import styles from "./index.module.css";
 
-import { LOCATION_FA } from "@/core/utils/helpers";
 
 function SearchForm() {
-  const [query, setQuery] = useState({});
+  const query = {};
 
   const router = useRouter();
   const { register, handleSubmit, control, reset } = useForm();
-  const { data, isPending, refetch } = useGetTours(query);
-  console.log("وضعیت دیتا:", { data, isPending });
+  const { data } = useGetTours(query);
   const { getQuery } = useQuery();
-
-  // useEffect(() => {
-  // refetch();
-  // }, [query]);
 
   const tours = data?.data || [];
 
@@ -53,11 +47,13 @@ function SearchForm() {
   useEffect(() => {
     const originId = getQuery("originId");
     const destinationId = getQuery("destinationId");
-    if (originId && destinationId) reset({ originId, destinationId });
-  }, []);
+
+    if (originId && destinationId) {
+      reset({ originId, destinationId });
+    }
+  }, [getQuery, reset]);
 
   const submitHandler = (form) => {
-    // setQuery(flattenObject(form));
     const query = QueryString.stringify(flattenObject(form));
     router.push(`/?${query}`);
   };
@@ -89,7 +85,7 @@ function SearchForm() {
             <option value="">مبدا</option>
             {origins.map((origin) => (
               <option key={origin.id} value={origin.id}>
-                {LOCATION_FA[origin.name] || origin.name}
+                {getLocationLabel(origin.name)}
               </option>
             ))}
           </select>
@@ -105,7 +101,7 @@ function SearchForm() {
             <option value="">مقصد</option>
             {destinations.map((destination) => (
               <option key={destination.id} value={destination.id}>
-                {LOCATION_FA[destination.name] || destination.name}
+                {getLocationLabel(destination.name)}
               </option>
             ))}
           </select>

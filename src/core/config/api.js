@@ -10,58 +10,71 @@ const api = axios.create({
   },
 });
 
+// Reuse one refresh request when multiple API requests expire simultaneously.
+let refreshPromise = null;
+
 api.interceptors.request.use(
   (request) => {
     const accessToken = getCookie("accessToken");
+
     if (accessToken) {
-      request.headers["Authorization"] = `Bearer ${accessToken}`;
+      request.headers = request.headers || {};
+      request.headers.Authorization = `Bearer ${accessToken}`;
     }
+
     return request;
   },
-  (error) => {
-    return Promise.reject(error);
-  }
+  (error) => Promise.reject(error)
 );
 
 api.interceptors.response.use(
-  (response) => {
-    return response;
-  },
+  (response) => response,
   async (error) => {
-    const originalRequest = error.config;
+    const originalRequest = error?.config;
+    const status = error?.response?.status;
+    const shouldRefresh = status === 401 || status === 403;
 
-    if (
-      (error.response.status === 401 || error.response.status === 403) &&
-      !originalRequest._retry
-    ) {
-      originalRequest._retry = true;
-
-      const res = await getNewTokens();
-      if (res?.status === 200) {
-        setCookie("accessToken", res?.data?.accessToken, 30);
-        return api(originalRequest);
-      }
-    } else {
-      // setCookie("accessToken", "", 0);
-      // setCookie("refreshToken", "", 0);
+    if (!shouldRefresh || !originalRequest || originalRequest._retry) {
+      return Promise.reject(error?.response?.data ?? error);
     }
 
-    return Promise.reject(error?.response?.data);
+    originalRequest._retry = true;
+
+    try {
+      if (!refreshPromise) {
+        refreshPromise = getNewTokens().finally(() => {
+          refreshPromise = null;
+        });
+      }
+
+      const refreshResponse = await refreshPromise;
+      const accessToken = refreshResponse?.data?.accessToken;
+
+      if (refreshResponse?.status !== 200 || !accessToken) {
+        return Promise.reject(error?.response?.data ?? error);
+      }
+
+      setCookie("accessToken", accessToken, 30);
+      return api(originalRequest);
+    } catch {
+      return Promise.reject(error?.response?.data ?? error);
+    }
   }
 );
 
-export default api;
-
 const getNewTokens = async () => {
   const refreshToken = getCookie("refreshToken");
-  if (!refreshToken) return;
+
+  if (!refreshToken) return null;
 
   try {
-    const response = axios.post(`${BASE_URL}/auth/refresh-token`, {
+    // Use base Axios so a refresh failure cannot trigger this interceptor again.
+    return await axios.post(`${BASE_URL}/auth/refresh-token`, {
       refreshToken,
     });
-    return response;
-  } catch (error) {
-    return error;
+  } catch {
+    return null;
   }
 };
+
+export default api;

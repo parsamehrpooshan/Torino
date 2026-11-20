@@ -20,8 +20,6 @@ function ProfilePage() {
 
   const { data } = useGetUserData();
 
-  console.log(data?.data?.payment);
-
   return (
     <div className={styles.main}>
       {accountForm ? (
@@ -76,7 +74,7 @@ function ProfilePage() {
               جنسیت :{" "}
               {data?.data?.gender === "male"
                 ? "آقا"
-                : data?.data?.gender === "male"
+                : data?.data?.gender === "female"
                 ? "خانم"
                 : "--"}
             </p>

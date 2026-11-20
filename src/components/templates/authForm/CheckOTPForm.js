@@ -1,59 +1,71 @@
 "use client";
 
-import { useState } from "react";
+import { Controller, useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 import OtpInput from "react18-input-otp";
-
+import { checkOtpSchema } from "@/core/schema";
 import { useCheckOtp } from "@/core/services/mutations";
 import toast from "react-hot-toast";
 
 function CheckOTPForm({ mobile, setStep, setIsOpen }) {
-  const [code, setCode] = useState("");
-
   const { isPending, mutate } = useCheckOtp();
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(checkOtpSchema),
+    mode: "onChange",
+    defaultValues: { code: "" },
+  });
 
-  const handleChange = (otp) => setCode(otp); // one-time-password
-
-  const submitHandler = (event) => {
-    event.preventDefault();
-
+  const submitHandler = ({ code }) => {
     if (isPending) return;
 
     mutate(
       { mobile, code },
       {
-        onSuccess: (data) => {
+        onSuccess: () => {
           setStep(1);
           setIsOpen(false);
           toast.success("ورود به حساب کاربری");
         },
-        onError: (error) => {
-          console.log(error);
-        },
+        onError: () => toast.error("کد تایید معتبر نیست یا منقضی شده است"),
       }
     );
-
-    console.log(code);
   };
 
   return (
     <div className="flex flex-col w-[561px] h-[362px] rounded-[20px] bg-white p-10 pt-16">
       <h4 className="text-xl text-center font-bold">کد تایید را وارد کنید.</h4>
       <form
-        onSubmit={submitHandler}
+        onSubmit={handleSubmit(submitHandler)}
+        noValidate
         className="flex flex-col gap-5 flex-1 mt-6"
       >
         <label className="text-xl text-center">کد تایید به شماره {mobile} ارسال شد</label>
         <div style={{ direction: "ltr" }}>
-          <OtpInput
-            value={code}
-            onChange={handleChange}
-            numInputs={6}
-            inputStyle="border border-gray-200 rounded-md !w-[30px] lg:!w-[58px] h-[53px] m-2"
+          <Controller
+            name="code"
+            control={control}
+            render={({ field }) => (
+              <OtpInput
+                value={field.value}
+                onChange={field.onChange}
+                numInputs={6}
+                inputType="tel"
+                shouldAutoFocus
+                inputStyle="border border-gray-200 rounded-md !w-[30px] lg:!w-[58px] h-[53px] m-2"
+              />
+            )}
           />
         </div>
+        {!!errors.code && (
+          <p className="text-red-500 text-sm text-center" role="alert">{errors.code.message}</p>
+        )}
         <button
           disabled={isPending}
-          className="bg-[#28A745] h-11 text-white rounded-md"
+          className="bg-[#28A745] h-11 text-white rounded-md disabled:opacity-60"
           type="submit"
         >
           {isPending ? "...در حال اعتبارسنجی" : "ورود به تورینو"}

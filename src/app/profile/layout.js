@@ -37,7 +37,7 @@ function ProfileLayout({ children }) {
             <Link href={"/profile/transactions"}>تراکنش ها</Link>
           </li>
         </ul>
-        <main className="col-span-3">{children}</main>
+        <main className={styles.content}>{children}</main>
       </div>
     </AuthProvider>
   );

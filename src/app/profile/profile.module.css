@@ -90,3 +90,7 @@
   width: 20px;
   height: 20px;
 }
+
+.content {
+  grid-column: span 3 / span 3;
+}

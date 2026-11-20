@@ -5,8 +5,6 @@ import Image from "next/image";
 import styles from "./TourList.module.css";
 
 function TourList({ tourData }) {
-  console.log(tourData);
-
   if (!tourData?.length)
     return <h1 className={styles.notfound}>توری یافت نشد</h1>;
 
@@ -22,7 +20,7 @@ function TourList({ tourData }) {
                 alt={tour.title}
                 width={300}
                 height={200}
-                className="rounded-md object-cover"
+                className={styles.tourImage}
               />
               <h2>{tour?.title}</h2>
               <div className={styles.options}>

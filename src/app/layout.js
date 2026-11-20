@@ -84,7 +84,7 @@ export default function RootLayout({ children }) {
             </div>
             <div className={styles.footerleft}>
               <div className={styles.number}>
-                <a className="mt-10">
+                <a className={styles.footerLogoLink}>
                   <Image
                     src="/images/Torino1.png"
                     alt="تورینو"
@@ -92,7 +92,7 @@ export default function RootLayout({ children }) {
                     height={50}
                   />
                 </a>
-                <p className="mt-5">تلفن پشتیبانی:021-7584</p>
+                <p className={styles.supportPhone}>تلفن پشتیبانی:021-7584</p>
               </div>
               <div className={styles.pictures}>
                 <Image
@@ -130,7 +130,7 @@ export default function RootLayout({ children }) {
             </div>
           </footer>
           <div className={styles.end}>
-            <hr className="mx-auto w-[1200px] my-6"></hr>
+            <hr className={styles.footerDivider}></hr>
             <p>کلیه حقوق این وب سایت متعلق به تورینو میباشد.</p>
           </div>
         </TanstackQueryProvider>

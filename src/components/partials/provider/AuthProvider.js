@@ -6,12 +6,13 @@ import { useEffect } from "react";
 
 function AuthProvider({ children }) {
   const router = useRouter();
-
   const { data, isPending } = useGetUserData();
 
   useEffect(() => {
-    if (!isPending && !data?.data) router.push("/");
-  }, [isPending]);
+    if (!isPending && !data?.data) {
+      router.push("/");
+    }
+  }, [data, isPending, router]);
 
   if (isPending) return <p>Loading</p>;
 

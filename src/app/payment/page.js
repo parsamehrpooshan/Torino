@@ -1,8 +1,6 @@
 import Link from "next/link";
 
 function PaymentPage({ searchParams }) {
-  console.log(searchParams);
-
   if (searchParams?.status === "success")
     return (
       <div className="border border-green-500 bg-green-50 text-center m-auto my-20 mt-20 w-fit rounded-md p-10">
