@@ -99,3 +99,33 @@
 .divider {
     margin-bottom: 1rem;
 }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1024px) {
+    .container {
+        width: auto;
+        margin: 0 16px;
+        max-width: none;
+    }
+}
+
+@media (max-width: 640px) {
+    .container {
+        padding: 12px;
+    }
+
+    .container section {
+        padding: 14px;
+    }
+
+    .container section > div:first-child {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .container section > div:nth-child(2),
+    .container section div:last-child {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+}

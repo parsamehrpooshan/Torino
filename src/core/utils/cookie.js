@@ -25,4 +25,10 @@ function getCookie(name) {
   return undefined;
 }
 
-export { setCookie, getCookie };
+function removeCookie(name) {
+  if (typeof document === "undefined") return;
+
+  document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/`;
+}
+
+export { setCookie, getCookie, removeCookie };

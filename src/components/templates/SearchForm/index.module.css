@@ -73,3 +73,60 @@
     cursor: pointer;
     margin-right: 10px;
 }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1024px) {
+    .container {
+        padding: 0 16px;
+    }
+
+    .img {
+        width: 100%;
+        height: auto;
+        max-height: 240px;
+        object-fit: cover;
+    }
+
+    .form {
+        width: 100%;
+        height: auto;
+        flex-wrap: wrap;
+        gap: 12px;
+        padding: 16px;
+    }
+
+    .form > div {
+        flex: 1 1 40%;
+    }
+
+    .form select {
+        width: 100%;
+    }
+
+    .button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 560px) {
+    .container p {
+        font-size: 18px;
+        padding-top: 10px;
+        padding-bottom: 14px;
+    }
+
+    .form > div {
+        flex-basis: 100%;
+    }
+
+    .form select,
+    .date input {
+        width: 100%;
+        font-size: 16px;
+    }
+
+    .button {
+        font-size: 20px;
+        height: 46px;
+    }
+}

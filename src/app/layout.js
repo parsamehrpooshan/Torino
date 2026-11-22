@@ -3,6 +3,7 @@ import "./globals.css";
 import TanstackQueryProvider from "@/components/partials/provider/TanstackQueryProvider";
 import { Toaster } from "react-hot-toast";
 import AuthForm from "@/components/templates/authForm";
+import LogoutButton from "@/components/atoms/LogoutButton";
 
 import styles from "./layout.module.css";
 import Image from "next/image";
@@ -62,7 +63,10 @@ export default function RootLayout({ children }) {
               <p>درباره ما</p>
               <p>تماس با ما</p>
             </div>
-            <AuthForm />
+            <div className={styles.authArea}>
+              <AuthForm />
+              <LogoutButton />
+            </div>
           </header>
           {children}
           <footer className={styles.footer}>

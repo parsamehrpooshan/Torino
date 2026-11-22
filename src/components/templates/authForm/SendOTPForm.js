@@ -45,7 +45,7 @@ function SendOTPForm({ setStep, mobile, setMobile }) {
   };
 
   return (
-    <div className="flex flex-col w-[561px] h-[362px] rounded-[20px] bg-white p-10 pt-16">
+    <div className="flex flex-col w-[min(561px,calc(100vw-2rem))] h-[362px] rounded-[20px] bg-white p-10 pt-16 max-sm:h-auto max-sm:max-h-[90svh] max-sm:overflow-y-auto max-sm:p-6 max-sm:pt-10">
       <h4 className="text-xl text-center font-bold">ورود به تورینو</h4>
       <form
         onSubmit={handleSubmit(submitHandler)}

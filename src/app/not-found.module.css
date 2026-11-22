@@ -34,3 +34,32 @@
     /* width: 399px;
     height: 75px; */
 }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+    .container {
+        flex-direction: column-reverse;
+        gap: 24px;
+        padding: 24px 16px;
+    }
+
+    .container img {
+        width: 100%;
+        max-width: 420px;
+        height: auto;
+    }
+
+    .text {
+        height: auto;
+        gap: 20px;
+    }
+
+    .text h2 {
+        font-size: 26px;
+    }
+
+    .text button {
+        font-size: 20px;
+        padding: 10px 16px;
+    }
+}

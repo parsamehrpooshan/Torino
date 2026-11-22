@@ -36,7 +36,7 @@ function CheckOTPForm({ mobile, setStep, setIsOpen }) {
   };
 
   return (
-    <div className="flex flex-col w-[561px] h-[362px] rounded-[20px] bg-white p-10 pt-16">
+    <div className="flex flex-col w-[min(561px,calc(100vw-2rem))] h-[362px] rounded-[20px] bg-white p-10 pt-16 max-sm:h-auto max-sm:max-h-[90svh] max-sm:overflow-y-auto max-sm:p-6 max-sm:pt-10">
       <h4 className="text-xl text-center font-bold">کد تایید را وارد کنید.</h4>
       <form
         onSubmit={handleSubmit(submitHandler)}
@@ -55,7 +55,7 @@ function CheckOTPForm({ mobile, setStep, setIsOpen }) {
                 numInputs={6}
                 inputType="tel"
                 shouldAutoFocus
-                inputStyle="border border-gray-200 rounded-md !w-[30px] lg:!w-[58px] h-[53px] m-2"
+                inputStyle="border border-gray-200 rounded-md !w-[38px] sm:!w-[48px] lg:!w-[58px] h-[53px] m-1 sm:m-2"
               />
             )}
           />

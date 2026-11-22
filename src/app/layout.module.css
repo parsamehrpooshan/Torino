@@ -25,6 +25,11 @@
     color: #28A745;
  }
 
+ .authArea {
+    display: flex;
+    align-items: center;
+ }
+
  .head img {
     width: 146px;
     height: 44px;
@@ -99,4 +104,128 @@
 .footerDivider {
     width: 1200px;
     margin: 1.5rem auto;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1240px) {
+    .head,
+    .footer {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .footerDivider {
+        width: calc(100% - 32px);
+    }
+}
+
+@media (max-width: 1024px) {
+    .middle {
+        margin: 0 24px;
+        width: auto;
+        flex: 1;
+        justify-content: center;
+        gap: 24px;
+    }
+
+    .footer {
+        height: auto;
+        padding-top: 24px;
+        padding-bottom: 24px;
+        flex-wrap: wrap;
+        gap: 24px;
+    }
+
+    .footertext {
+        width: auto;
+        height: auto;
+        gap: 40px;
+    }
+
+    .footertext p {
+        line-height: 38px;
+    }
+
+    .pictures {
+        flex-wrap: wrap;
+        justify-content: flex-start;
+    }
+
+    .pictures img {
+        width: 60px;
+        height: 60px;
+        margin: 10px;
+    }
+
+    .number {
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .head {
+        height: auto;
+        min-height: 64px;
+        padding: 10px 16px;
+        flex-wrap: wrap;
+        row-gap: 10px;
+    }
+
+    .head > img {
+        width: 110px;
+        height: auto;
+    }
+
+    .middle {
+        order: 3;
+        width: 100%;
+        margin: 0;
+        justify-content: space-between;
+        gap: 8px;
+    }
+
+    .middle p {
+        font-size: 13px;
+    }
+
+    .footer {
+        flex-direction: column;
+    }
+
+    .footertext {
+        width: 100%;
+        justify-content: space-between;
+        gap: 16px;
+    }
+
+    .footertext h2 {
+        font-size: 18px;
+    }
+
+    .footertext p {
+        font-size: 14px;
+        line-height: 34px;
+    }
+
+    .footerleft {
+        width: 100%;
+    }
+
+    .number {
+        align-items: center;
+    }
+
+    .footerleft img {
+        width: 110px;
+        height: auto;
+    }
+
+    .pictures {
+        justify-content: center;
+    }
+
+    .end {
+        padding: 0 16px;
+        font-size: 12px;
+    }
 }

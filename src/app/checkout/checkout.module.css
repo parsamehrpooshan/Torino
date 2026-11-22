@@ -125,3 +125,54 @@
     font-size: 12px;
     margin: 2px 8px 0;
 }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1024px) {
+    .container {
+        flex-direction: column;
+        gap: 20px;
+        margin: 20px 16px 80px;
+    }
+
+    .right,
+    .left {
+        width: 100%;
+        height: auto;
+    }
+
+    .left {
+        gap: 16px;
+    }
+
+    .passengerForm {
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .fieldGroup {
+        flex: 1 1 45%;
+    }
+
+    .container button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 560px) {
+    .fieldGroup {
+        flex-basis: 100%;
+    }
+
+    .right h2,
+    .left h2 {
+        font-size: 18px;
+    }
+
+    .left p:last-child {
+        font-size: 22px;
+    }
+
+    .container button {
+        font-size: 20px;
+    }
+}
