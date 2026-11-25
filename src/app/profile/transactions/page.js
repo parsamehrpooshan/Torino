@@ -5,7 +5,7 @@ import { useGetUserTransactions } from "@/core/services/queries";
 import styles from "./transactions.module.css";
 import Link from "next/link";
 
-import { convertToIranDateTime } from "@/core/utils/helpers";
+import { convertToIranDateTime, formatPrice } from "@/core/utils/helpers";
 
 
 function Transactions() {
@@ -30,7 +30,7 @@ function Transactions() {
       {data?.data?.map((transactions) => (
         <section key={transactions?.id}>
           <p>{convertToIranDateTime(transactions?.createdAt) || transactions?.createdAt}</p>
-          <p>{transactions?.amount}</p>
+          <p>{formatPrice(transactions?.amount)}</p>
           <p>{transactions?.type === "Purchase" ? "ثبت نام در تور گردشگری" : null}</p>
           <p>{transactions?.id}</p>
         </section>

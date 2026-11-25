@@ -13,7 +13,7 @@ import Image from "next/image";
 
 import { DatePicker } from "zaman";
 
-import { getTourDurationLabel } from "@/core/utils/helpers";
+import { formatPrice, getTourDurationLabel } from "@/core/utils/helpers";
 
 function CheckoutPage() {
   const { data } = useGetUserBasket();
@@ -50,21 +50,6 @@ function CheckoutPage() {
         {errors[name].message}
       </span>
     ) : null;
-
-  // const checkoutHandler = (formData) => {
-  //   // if () {} کاربر اطلاعات را وارد کرده باشد
-  //   mutate(formData, {
-  //     onSuccess: () => {
-  //       // location.href = link
-  //       router.push("/payment?status=success");
-  //     },
-  //     onError: (error) => {
-  //       console.error(error);
-  //     },
-  //   });
-
-  //   updateUserProfile(formData);
-  // };
 
   const checkoutHandler = (formData) => {
     const nameParts = formData.fullName.trim().split(/\s+/);
@@ -177,11 +162,10 @@ function CheckoutPage() {
           <h2>{data?.data?.title}</h2>
           {getTourDurationLabel(data?.data?.startDate, data?.data?.endDate)}
         </div>
-        <h4>-----------------------------</h4>
         <div>
           <p>قیمت نهایی</p>
           <p>
-            {data?.data?.price} <span>تومان</span>
+            {formatPrice(data?.data?.price)} <span>تومان</span>
           </p>
         </div>
         <button type="submit" form="checkout-form">

@@ -3,6 +3,7 @@ import React from "react";
 import Image from "next/image";
 
 import styles from "./TourList.module.css";
+import { formatPrice } from "@/core/utils/helpers";
 
 function TourList({ tourData }) {
   if (!tourData?.length)
@@ -34,7 +35,7 @@ function TourList({ tourData }) {
                 <Link href={`/tours/${tour?.id}`}>رزرو</Link>
               </button>
               <p>
-                {tour?.price} <span>تومان</span>
+                {formatPrice(tour?.price)} <span>تومان</span>
               </p>
             </div>
           </section>

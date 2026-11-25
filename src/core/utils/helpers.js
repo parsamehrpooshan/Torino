@@ -115,3 +115,21 @@ export const convertToBirthdate = (isoDate) => {
     day: "2-digit",
   }).format(date);
 };
+
+export const formatPrice = (price) => {
+  if (price === null || price === undefined || price === "") return "-";
+
+  if (typeof price === "number") {
+    return Number.isFinite(price)
+      ? new Intl.NumberFormat("fa-IR").format(price)
+      : price;
+  }
+
+  const raw = String(price).trim();
+  if (!/^[\d.,\s]+$/.test(raw)) return raw;
+
+  const value = Number(raw.replace(/,/g, ""));
+  return Number.isFinite(value)
+    ? new Intl.NumberFormat("fa-IR").format(value)
+    : raw;
+};

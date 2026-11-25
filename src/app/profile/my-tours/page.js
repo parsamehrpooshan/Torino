@@ -7,6 +7,7 @@ import Link from "next/link";
 
 import {
   convertToIranDateTime,
+  formatPrice,
   getLocationLabel,
   getVehicleIcon,
   getVehicleLabel,
@@ -78,7 +79,7 @@ function MyTours() {
             <p>
               شناسه تور : <span>{tour?.id}</span>
             </p>
-            <p>مبلغ پرداخت شده : <span>{tour?.price}</span> تومان </p>
+            <p>مبلغ پرداخت شده : <span>{formatPrice(tour?.price)}</span> تومان </p>
           </div>
         </section>
       ))}
