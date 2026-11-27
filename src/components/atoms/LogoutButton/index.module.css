@@ -1,16 +1,28 @@
 .logout {
-  margin-right: 16px;
-  padding: 6px 12px;
-  border: 1px solid #28a745;
-  border-radius: 6px;
-  background-color: transparent;
-  color: #28a745;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  margin-top: 4px;
+  padding: 12px 10px;
+  border: none;
+  border-top: 1px solid #ededed;
+  background: none;
+  color: #e5484d;
   font-family: inherit;
   font-size: 14px;
+  text-align: right;
   cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
 .logout:hover {
-  background-color: #28a745;
-  color: #fff;
+  background-color: #fdf3f3;
+}
+
+.icon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
 }

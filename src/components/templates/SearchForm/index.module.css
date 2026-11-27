@@ -117,11 +117,18 @@
 
     .form > div {
         flex-basis: 100%;
+        min-width: 0;
+    }
+
+    .date {
+        width: 100%;
+        min-width: 0;
     }
 
     .form select,
     .date input {
         width: 100%;
+        max-width: 100%;
         font-size: 16px;
     }
 

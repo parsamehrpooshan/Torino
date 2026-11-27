@@ -28,8 +28,27 @@ function LogoutButton() {
   };
 
   return (
-    <button type="button" className={styles.logout} onClick={logoutHandler}>
-      خروج از حساب کاربری
+    <button
+      type="button"
+      className={styles.logout}
+      onClick={logoutHandler}
+      role="menuitem"
+    >
+      <span>خروج از حساب کاربری</span>
+      <svg
+        className={styles.icon}
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.7"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        aria-hidden="true"
+      >
+        <path d="M14 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-2" />
+        <path d="M9 12h11" />
+        <path d="m17 9 3 3-3 3" />
+      </svg>
     </button>
   );
 }

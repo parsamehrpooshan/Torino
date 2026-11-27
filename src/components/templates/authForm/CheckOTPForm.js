@@ -55,7 +55,7 @@ function CheckOTPForm({ mobile, setStep, setIsOpen }) {
                 numInputs={6}
                 inputType="tel"
                 shouldAutoFocus
-                inputStyle="border border-gray-200 rounded-md !w-[38px] sm:!w-[48px] lg:!w-[58px] h-[53px] m-1 sm:m-2"
+                inputStyle="border border-gray-200 rounded-md !w-[38px] sm:!w-[48px] lg:!w-[58px] h-[53px] m-1 sm:m-2 max-[360px]:!w-[30px] max-[360px]:!m-0.5"
               />
             )}
           />

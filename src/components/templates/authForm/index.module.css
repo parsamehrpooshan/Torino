@@ -1,14 +1,181 @@
-.number {
-    display: flex;
-    align-items: center;
-    color: #28A745;
+.authForm {
+  display: inline-flex;
+  align-items: center;
 }
 
-.number img {
-    width: 24px;
-    height: 24px;
+.loginButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 14px;
+  border: 1.5px solid #28a745;
+  border-radius: 10px;
+  background-color: transparent;
+  color: #28a745;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.4;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
-.number p {
-    margin: 0 5px;
+.loginButton:hover {
+  background-color: rgba(40, 167, 69, 0.08);
+}
+
+.loginButton .loginIcon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+.separator {
+  width: 1px;
+  height: 18px;
+  background-color: currentColor;
+  opacity: 0.45;
+}
+
+.userMenu {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.userButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 0;
+  border: none;
+  background: none;
+  color: #28a745;
+  font-family: inherit;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.userButton .triggerIcon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.mobile {
+  direction: ltr;
+  unicode-bidi: plaintext;
+  letter-spacing: 0.5px;
+}
+
+.userButton .chevron {
+  width: 14px;
+  height: 14px;
+  object-fit: contain;
+  transition: transform 0.2s ease;
+}
+
+.userButton .chevronOpen {
+  transform: rotate(180deg);
+}
+
+.dropdown {
+  position: absolute;
+  top: calc(100% + 14px);
+  left: 0;
+  z-index: 50;
+  width: 250px;
+  max-width: calc(100vw - 32px);
+  padding: 8px;
+  background-color: #fff;
+  border-radius: 14px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.14);
+}
+
+.dropdown::before {
+  content: "";
+  position: absolute;
+  top: -6px;
+  right: 20px;
+  width: 12px;
+  height: 12px;
+  background-color: #fff;
+  transform: rotate(45deg);
+}
+
+.dropdownHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background-color: #f4f4f4;
+}
+
+.dropdownHeader .avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background-color: #e3e3e3;
+  overflow: hidden;
+}
+
+.dropdownHeader .avatar img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+.headerMobile {
+  color: #444;
+  font-size: 15px;
+  direction: ltr;
+  unicode-bidi: plaintext;
+  letter-spacing: 0.5px;
+}
+
+.menuItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  margin-top: 4px;
+  padding: 12px 10px;
+  border-top: 1px solid #ededed;
+  color: #444;
+  font-family: inherit;
+  font-size: 14px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.menuItem:hover {
+  background-color: #f8f8f8;
+}
+
+.menuIcon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  color: #7a7a7a;
+}
+
+@media (max-width: 768px) {
+  .loginButton {
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+
+  .userButton {
+    font-size: 13px;
+  }
+
+  .dropdown {
+    width: 220px;
+  }
 }
