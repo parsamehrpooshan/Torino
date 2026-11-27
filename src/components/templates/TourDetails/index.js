@@ -8,6 +8,7 @@ import {
   getVehicleLabel,
   getVehicleIcon,
   formatPrice,
+  getImageUrl,
 } from "@/core/utils/helpers";
 
 const HIGHLIGHTS = [
@@ -56,7 +57,7 @@ function TourDetails({ tourDetails }) {
       <div className={styles.first}>
         <div className={styles.media}>
           <Image
-            src={tourDetails.image}
+            src={getImageUrl(tourDetails.image)}
             alt={tourDetails.title}
             fill
             sizes="(max-width: 1024px) 100vw, 520px"

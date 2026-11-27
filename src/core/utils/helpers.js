@@ -133,3 +133,21 @@ export const formatPrice = (price) => {
     ? new Intl.NumberFormat("fa-IR").format(value)
     : raw;
 };
+
+export function getImageUrl(image) {
+  const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+
+  if (!image) return "";
+
+  try {
+    const url = new URL(image, BASE_URL);
+
+    if (url.hostname === "localhost" || url.hostname === "127.0.0.1") {
+      return `${BASE_URL}${url.pathname}${url.search}`;
+    }
+
+    return url.href;
+  } catch {
+    return image;
+  }
+}

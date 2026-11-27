@@ -3,7 +3,7 @@ import React from "react";
 import Image from "next/image";
 
 import styles from "./TourList.module.css";
-import { formatPrice } from "@/core/utils/helpers";
+import { formatPrice, getImageUrl } from "@/core/utils/helpers";
 
 function TourList({ tourData }) {
   if (!tourData?.length)
@@ -17,7 +17,7 @@ function TourList({ tourData }) {
           <section key={tour?.id} className={styles.card}>
             <div>
               <Image
-                src={tour.image}
+                src={getImageUrl(tour.image)}
                 alt={tour.title}
                 width={300}
                 height={200}
