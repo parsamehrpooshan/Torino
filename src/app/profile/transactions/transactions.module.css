@@ -53,31 +53,29 @@
 /* ---------- Responsive ---------- */
 @media (max-width: 1024px) {
     .container {
-        width: auto;
+        width: calc(100vw - 32px);
         max-width: none;
         margin: 0 16px 120px;
+        overflow-x: auto;
+        overscroll-behavior-x: contain;
+        -webkit-overflow-scrolling: touch;
+        touch-action: pan-x pan-y;
+        cursor: grab;
+    }
+
+    .container:active {
+        cursor: grabbing;
+    }
+
+    .container header,
+    .container section {
+        min-width: 871px;
     }
 }
 
 @media (max-width: 560px) {
-    .container header,
-    .container section {
-        grid-template-columns: repeat(2, 1fr);
-        row-gap: 6px;
-        height: auto;
-        padding: 10px 4px;
-    }
-
-    .container header {
-        align-items: center;
-    }
-
-    .container h2 {
-        font-size: 12px;
-    }
-
-    .container p {
-        font-size: 12px;
-        padding: 0 4px;
+    .container {
+        margin: 0 12px 80px;
+        width: calc(100vw - 24px);
     }
 }

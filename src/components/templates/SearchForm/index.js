@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
-import { DatePicker } from "zaman";
+import dynamic from "next/dynamic";
 import QueryString from "qs";
 
 import { flattenObject, getLocationLabel } from "@/core/utils/helpers";
@@ -13,6 +13,12 @@ import Image from "next/image";
 
 import styles from "./index.module.css";
 
+// zaman's picker reads browser date/DOM state during render. Avoid rendering
+// it on the server so the initial HTML is identical during hydration.
+const DatePicker = dynamic(
+  () => import("zaman").then((module) => module.DatePicker),
+  { ssr: false }
+);
 
 function SearchForm() {
   const query = {};

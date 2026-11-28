@@ -34,8 +34,12 @@ function SendOTPForm({ setStep, mobile, setMobile }) {
       { mobile: formData.mobile },
       {
         onSuccess: (response) => {
-          toast.success(response?.data?.message || "کد تایید ارسال شد");
-          if (response?.data?.code) toast(response.data.code);
+          const toastOptions = { duration: 10000 };
+          toast.success(
+            response?.data?.message || "کد تایید ارسال شد",
+            toastOptions
+          );
+          if (response?.data?.code) toast(response.data.code, toastOptions);
           setStep(2);
         },
         onError: () =>

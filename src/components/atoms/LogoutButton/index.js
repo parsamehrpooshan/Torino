@@ -34,7 +34,6 @@ function LogoutButton() {
       onClick={logoutHandler}
       role="menuitem"
     >
-      <span>خروج از حساب کاربری</span>
       <svg
         className={styles.icon}
         viewBox="0 0 24 24"
@@ -49,6 +48,8 @@ function LogoutButton() {
         <path d="M9 12h11" />
         <path d="m17 9 3 3-3 3" />
       </svg>
+      <span>خروج از حساب کاربری</span>
+
     </button>
   );
 }
